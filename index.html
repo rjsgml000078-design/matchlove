@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>매치러브 | 2030 직장인을 위한 프리미엄 소개팅 매칭 서비스</title>
+    <meta name="description" content="서울/수도권 직장인 남녀를 위한 프리미엄 소개팅, 매치러브. 검증된 신원과 성향 기반 매칭으로 당신의 소중한 인연을 찾아드립니다.">
+    <meta name="keywords" content="소개팅, 프리미엄 소개팅, 직장인 소개팅, 소개팅 앱 추천, 서울소개팅">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://matchlove.co.kr/">
+    <meta property="og:title" content="매치러브 | 사랑을 찾는 가장 세련된 방법">
+    <meta property="og:description" content="가벼운 만남 대신, 삶의 궤적이 닮은 진정한 인연을 만나보세요. 2030 직장인 전용 프리미엄 매칭.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1518196775791-2e1bbd3ca712?auto=format&fit=crop&q=80&w=1200">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #E11D48; /* Rose Pink */
+            --primary-soft: #FFF1F2;
+            --accent: #C8A96B; /* Muted Gold */
+            --bg-soft: #FCF9F8; /* Ivory/Blush Background */
+            --text-main: #0F172A; /* Deep Navy */
+            --text-muted: #475569;
+            --white: #FFFFFF;
+            --kakao: #FEE500;
+            --kakao-text: #191919;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Pretendard', sans-serif; 
+            background-color: var(--bg-soft); 
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Nanum Myeongjo', serif; word-break: keep-all; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+
+        /* Navigation */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(252, 249, 248, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(225, 29, 72, 0.05);
+            transition: var(--transition);
+        }
+        header.scrolled { padding: 0.5rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; padding: 1.2rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { 
+            font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.6rem; 
+            color: var(--primary); display: flex; align-items: center; gap: 8px;
+        }
+        .logo span { font-family: 'Nanum Myeongjo', serif; font-size: 1.2rem; color: var(--text-main); font-weight: 800; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { font-size: 0.95rem; font-weight: 500; color: var(--text-muted); }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 1rem 2.2rem; border-radius: 50px; font-weight: 600;
+            cursor: pointer; transition: var(--transition); border: none;
+            gap: 10px; font-size: 1rem;
+        }
+        .btn-primary { 
+            background: linear-gradient(135deg, var(--primary), #FB7185); 
+            color: var(--white);
+            box-shadow: 0 10px 25px rgba(225, 29, 72, 0.2);
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(225, 29, 72, 0.3); }
+        
+        .btn-kakao {
+            background-color: var(--kakao);
+            color: var(--kakao-text);
+            box-shadow: 0 4px 15px rgba(254, 229, 0, 0.3);
+        }
+        .btn-kakao:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(254, 229, 0, 0.4); }
+
+        .btn-secondary { background: var(--white); color: var(--primary); border: 1px solid var(--primary-soft); }
+        .btn-secondary:hover { background: var(--primary-soft); }
+
+        /* Sections */
+        section { padding: 8rem 2rem; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .text-center { text-align: center; }
+
+        /* Hero */
+        .hero {
+            padding-top: 12rem; padding-bottom: 10rem;
+            background: radial-gradient(circle at 90% 10%, #FFF5F5 0%, transparent 40%),
+                        radial-gradient(circle at 10% 90%, #FDF2F8 0%, transparent 40%);
+            position: relative;
+        }
+        .hero-content { display: flex; align-items: center; gap: 4rem; }
+        .hero-text { flex: 1; }
+        .hero-visual { flex: 1; position: relative; display: flex; justify-content: center; }
+        
+        .badge {
+            display: inline-block; padding: 0.5rem 1.2rem; background: var(--primary-soft);
+            color: var(--primary); border-radius: 30px; font-size: 0.85rem; font-weight: 700;
+            margin-bottom: 1.5rem; letter-spacing: 1px;
+        }
+        .hero h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 1.5rem; }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2.5rem; word-break: keep-all; }
+        
+        .hero-visual .card-stack {
+            width: 320px; height: 420px; background: var(--white);
+            border-radius: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+            position: relative; overflow: hidden;
+            border: 8px solid var(--white);
+            transform: rotate(-3deg);
+        }
+        .hero-visual .card-stack::after {
+            content: 'MatchLove'; position: absolute; bottom: 20px; left: 20px;
+            font-family: 'Playfair Display'; color: var(--primary); font-size: 1.2rem;
+        }
+        .hero-visual .card-bg {
+            position: absolute; top: 20px; right: -20px; width: 320px; height: 420px;
+            background: linear-gradient(135deg, #FFE4E6 0%, #FECDD3 100%);
+            border-radius: 30px; z-index: -1; transform: rotate(5deg); opacity: 0.5;
+        }
+
+        /* Benefits */
+        .benefits { background: var(--white); }
+        .section-title { margin-bottom: 4rem; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; }
+        
+        .benefit-card {
+            padding: 3rem 2rem; background: var(--bg-soft); border-radius: 30px;
+            transition: var(--transition); border: 1px solid transparent;
+        }
+        .benefit-card:hover { 
+            transform: translateY(-10px); background: var(--white); 
+            border-color: var(--primary-soft); box-shadow: 0 20px 40px rgba(225, 29, 72, 0.05);
+        }
+        .icon-box { 
+            width: 60px; height: 60px; background: var(--white); border-radius: 20px;
+            display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.03); color: var(--primary); font-size: 1.5rem;
+        }
+
+        /* How it works */
+        .steps { background: var(--bg-soft); }
+        .step-item { display: flex; align-items: center; gap: 3rem; margin-bottom: 4rem; }
+        .step-item:nth-child(even) { flex-direction: row-reverse; }
+        .step-img { flex: 1; height: 300px; background: var(--white); border-radius: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.02); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display'; font-size: 5rem; color: var(--primary-soft); }
+        .step-text { flex: 1; }
+        .step-num { font-family: 'Playfair Display'; font-size: 3rem; color: var(--primary); opacity: 0.3; margin-bottom: 0.5rem; }
+
+        /* Testimonials */
+        .testimonials { background: var(--white); position: relative; }
+        .testimonial-card {
+            background: var(--bg-soft); padding: 2.5rem; border-radius: 30px;
+            position: relative;
+        }
+        .quote { color: var(--primary); font-size: 2rem; margin-bottom: 1rem; opacity: 0.5; }
+        .user-info { display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem; }
+        .user-info .avatar { width: 45px; height: 45px; border-radius: 50%; background: var(--primary-soft); }
+
+        /* FAQ */
+        .faq { background: var(--white); }
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        .faq-item { margin-bottom: 1rem; border-radius: 20px; overflow: hidden; background: var(--bg-soft); }
+        .faq-q { 
+            padding: 1.5rem 2rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+            font-weight: 600; transition: var(--transition);
+        }
+        .faq-q:hover { color: var(--primary); }
+        .faq-a { padding: 0 2rem; max-height: 0; overflow: hidden; transition: var(--transition); color: var(--text-muted); }
+        .faq-item.active .faq-a { padding: 0 2rem 1.5rem 2rem; max-height: 200px; }
+        .faq-item.active .faq-q { color: var(--primary); }
+
+        /* Contact Section Re-design */
+        .contact { background: var(--primary-soft); position: relative; overflow: hidden; }
+        .contact-card {
+            background: var(--white); padding: 4rem; border-radius: 40px;
+            box-shadow: 0 30px 60px rgba(225, 29, 72, 0.1);
+            max-width: 900px; margin: 0 auto; text-align: center;
+        }
+        .contact-card h2 { margin-bottom: 1rem; }
+        .contact-card p { margin-bottom: 2.5rem; color: var(--text-muted); }
+        
+        .kakao-notice {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            margin-top: 2rem; padding: 1rem; background: rgba(254, 229, 0, 0.1);
+            border-radius: 15px; font-size: 0.9rem; color: #665200; font-weight: 600;
+        }
+
+        /* Footer */
+        footer { background: var(--text-main); color: rgba(255,255,255,0.6); padding: 5rem 2rem; font-size: 0.9rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; }
+        .footer-logo { color: var(--white); font-family: 'Playfair Display'; font-size: 1.5rem; margin-bottom: 1.5rem; }
+
+        /* Mobile */
+        @media (max-width: 1024px) {
+            .hero-content { flex-direction: column; text-align: center; }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.8rem; }
+            .step-item, .step-item:nth-child(even) { flex-direction: column; text-align: center; }
+        }
+
+        /* Animations */
+        [data-reveal] { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        [data-reveal].active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="nav-container">
+            <a href="#" class="logo">ML <span>매치러브</span></a>
+            <nav class="nav-links">
+                <a href="#service">서비스 소개</a>
+                <a href="#how">이용방법</a>
+                <a href="#review">매칭후기</a>
+                <a href="#faq">FAQ</a>
+                <a href="https://open.kakao.com/o/gAPr1SBi" target="_blank" class="btn btn-kakao" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 3.185-9 7.115 0 2.558 1.712 4.8 4.346 6.113l-.843 3.1c-.077.285.093.565.378.624.08.016.158.012.232-.01l3.666-2.441c.402.052.812.083 1.221.083 4.97 0 9-3.185 9-7.115S16.97 3 12 3z"/></svg>
+                    상담 시작하기
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text" data-reveal>
+                <span class="badge">PREMIUM MATCHING SERVICE</span>
+                <h1>오늘, 당신의 가장<br>설레는 인연을 만납니다</h1>
+                <p>서울/수도권 2030 직장인을 위한 프라이빗 매칭.<br>가벼운 스와이프 대신, 삶의 결이 맞는 진심 어린 만남을 제안합니다.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="https://open.kakao.com/o/gAPr1SBi" target="_blank" class="btn btn-primary">
+                        카카오톡으로 1:1 상담 신청
+                    </a>
+                    <a href="#service" class="btn btn-secondary">서비스 알아보기</a>
+                </div>
+                <div style="margin-top: 2rem; display: flex; gap: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+                    <span>#직장인소개팅</span> <span>#신원인증완료</span> <span>#맞춤케어</span>
+                </div>
+            </div>
+            <div class="hero-visual" data-reveal style="transition-delay: 0.2s;">
+                <div class="card-stack">
+                    <img src="https://images.unsplash.com/photo-1516589174184-c685266d4af4?auto=format&fit=crop&q=80&w=400" alt="Couple" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="card-bg"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="service" class="benefits">
+        <div class="container">
+            <div class="section-title text-center" data-reveal>
+                <span style="color: var(--primary); font-weight: 700; font-size: 0.9rem;">WHY MATCHLOVE</span>
+                <h2>매치러브가 특별한 이유</h2>
+            </div>
+            <div class="grid-4">
+                <div class="benefit-card" data-reveal>
+                    <div class="icon-box">✓</div>
+                    <h3>철저한 신원 검증</h3>
+                    <p>직장, 학력, 본인 인증을 거친 신뢰할 수 있는 분들만 활동합니다.</p>
+                </div>
+                <div class="benefit-card" data-reveal style="transition-delay: 0.1s;">
+                    <div class="icon-box">♥</div>
+                    <h3>가치관 기반 매칭</h3>
+                    <p>단순한 조건이 아닌, 라이프스타일과 성향을 분석하여 연결합니다.</p>
+                </div>
+                <div class="benefit-card" data-reveal style="transition-delay: 0.2s;">
+                    <div class="icon-box">☕</div>
+                    <h3>바쁜 일상 속 효율성</h3>
+                    <p>시간 낭비 없는 매칭으로 직장인들에게 최적화된 만남을 제공합니다.</p>
+                </div>
+                <div class="benefit-card" data-reveal style="transition-delay: 0.3s;">
+                    <div class="icon-box">✨</div>
+                    <h3>프라이빗 매니징</h3>
+                    <p>매칭 전후의 피드백을 통해 더욱 정교한 인연을 찾아드립니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how" class="steps">
+        <div class="container">
+            <div class="section-title text-center" data-reveal>
+                <h2>이용 방법</h2>
+                <p>매치러브와 함께하는 간편하고 확실한 4단계</p>
+            </div>
+            
+            <div class="step-item" data-reveal>
+                <div class="step-img">01</div>
+                <div class="step-text">
+                    <div class="step-num">01</div>
+                    <h3>1:1 상담 신청</h3>
+                    <p>카카오톡 오픈채팅을 통해 가볍게 첫 상담을 시작하세요. 매니저가 친절히 안내해 드립니다.</p>
+                </div>
+            </div>
+
+            <div class="step-item" data-reveal>
+                <div class="step-img">02</div>
+                <div class="step-text">
+                    <div class="step-num">02</div>
+                    <h3>프로필 등록 & 검증</h3>
+                    <p>본인의 매력을 보여줄 수 있는 프로필과 희망하는 이상형의 가치관을 공유합니다.</p>
+                </div>
+            </div>
+
+            <div class="step-item" data-reveal>
+                <div class="step-img">03</div>
+                <div class="step-text">
+                    <div class="step-num">03</div>
+                    <h3>맞춤 인연 제안</h3>
+                    <p>매니저가 엄선한 매칭 후보자를 제안 드립니다. 서로 수락 시 만남이 확정됩니다.</p>
+                </div>
+            </div>
+
+            <div class="step-item" data-reveal>
+                <div class="step-img">04</div>
+                <div class="step-text">
+                    <div class="step-num">04</div>
+                    <h3>실제 만남 & 피드백</h3>
+                    <p>설레는 첫 만남 후, 매니저와 소통하며 다음 단계를 준비하거나 매칭을 정교화합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="review" class="testimonials">
+        <div class="container">
+            <div class="section-title text-center" data-reveal>
+                <h2>매칭 후기</h2>
+                <p>매치러브를 통해 소중한 인연을 만난 분들의 이야기</p>
+            </div>
+            <div class="grid-4" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                <div class="testimonial-card" data-reveal>
+                    <div class="quote">“</div>
+                    <p>“앱은 가벼워서 늘 고민이었는데, 매치러브는 확실히 결이 다른 분들이 나오시더라고요. 대화가 잘 통하는 사람을 만나 정말 행복합니다.”</p>
+                    <div class="user-info">
+                        <div class="avatar"></div>
+                        <div><strong>김*희 님</strong><br><span style="font-size: 0.8rem; color: var(--text-muted);">IT 기업 기획자 (31세)</span></div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-reveal style="transition-delay: 0.1s;">
+                    <div class="quote">“</div>
+                    <p>“바쁜 직장 생활 중에 누군가를 찾기 힘들었는데, 매니저님이 제 성향을 잘 파악해서 딱 맞는 분을 소개해주셔서 좋았습니다.”</p>
+                    <div class="user-info">
+                        <div class="avatar"></div>
+                        <div><strong>이*준 님</strong><br><span style="font-size: 0.8rem; color: var(--text-muted);">대기업 엔지니어 (34세)</span></div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-reveal style="transition-delay: 0.2s;">
+                    <div class="quote">“</div>
+                    <p>“신원 확인이 확실하다는 점이 가장 안심됐어요. 덕분에 불필요한 걱정 없이 만남 자체에만 집중할 수 있었습니다.”</p>
+                    <div class="user-info">
+                        <div class="avatar"></div>
+                        <div><strong>박*은 님</strong><br><span style="font-size: 0.8rem; color: var(--text-muted);">공공기관 근무 (29세)</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top: 4rem;" data-reveal>
+                <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;">
+                    <div><h4 style="font-size: 2.5rem; color: var(--primary);">92%</h4><p>매칭 만족도</p></div>
+                    <div><h4 style="font-size: 2.5rem; color: var(--primary);">1:1</h4><p>전담 케어 시스템</p></div>
+                    <div><h4 style="font-size: 2.5rem; color: var(--primary);">24h</h4><p>평균 응답 속도</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-title text-center" data-reveal>
+                <h2>자주 묻는 질문</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item" data-reveal>
+                    <div class="faq-q">어떤 사람들이 주로 이용하나요? <span>+</span></div>
+                    <div class="faq-a">주로 서울 및 수도권에 거주하는 2030 직장인 분들이 이용하십니다. 대기업, 공기업, 전문직 등 안정적인 직군을 가진 분들이 진지한 만남을 위해 찾고 계십니다.</div>
+                </div>
+                <div class="faq-item" data-reveal>
+                    <div class="faq-q">신원 확인은 어떻게 진행되나요? <span>+</span></div>
+                    <div class="faq-a">재직 증명(명함, 사원증 등), 학력 확인, 본인 명의 휴대폰 인증 등을 통해 검증을 진행합니다. 허위 사실 기재 시 서비스 이용이 제한됩니다.</div>
+                </div>
+                <div class="faq-item" data-reveal>
+                    <div class="faq-q">기존 소개팅 앱과 무엇이 다른가요? <span>+</span></div>
+                    <div class="faq-a">불특정 다수에게 프로필이 노출되는 앱과 달리, 매치러브는 매니저가 직접 성향을 분석하여 최적의 인연을 1:1로 제안하는 프라이빗한 구조입니다.</div>
+                </div>
+                <div class="faq-item" data-reveal>
+                    <div class="faq-q">상담 비용은 얼마인가요? <span>+</span></div>
+                    <div class="faq-a">기본적인 가입 상담 및 성향 진단은 무료로 진행됩니다. 실제 매칭 서비스 이용 시 발생하는 비용은 카카오톡 상담을 통해 자세히 안내받으실 수 있습니다.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-card" data-reveal>
+                <span class="badge">START YOUR LOVE STORY</span>
+                <h2>지금 바로 인연을 찾아보세요</h2>
+                <p>복잡한 가입 절차 없이, 카카오톡 오픈채팅으로 간편하게 상담받으실 수 있습니다.<br>당신의 설레는 내일을 매치러브가 응원합니다.</p>
+                
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem;">
+                    <a href="https://open.kakao.com/o/gAPr1SBi" target="_blank" class="btn btn-kakao" style="width: 100%; max-width: 400px; padding: 1.2rem; font-size: 1.1rem;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 3.185-9 7.115 0 2.558 1.712 4.8 4.346 6.113l-.843 3.1c-.077.285.093.565.378.624.08.016.158.012.232-.01l3.666-2.441c.402.052.812.083 1.221.083 4.97 0 9-3.185 9-7.115S16.97 3 12 3z"/></svg>
+                        카카오톡 1:1 상담 바로가기
+                    </a>
+                    
+                    <div class="kakao-notice">
+                        ⚡ 실시간 상담 가능 (운영시간 내)
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem; display: flex; justify-content: center; gap: 2rem; color: var(--text-muted); font-size: 0.85rem;">
+                    <div><strong>운영시간</strong><br>평일 10:00 - 20:00</div>
+                    <div><strong>상담방식</strong><br>비대면 1:1 상담</div>
+                    <div><strong>활동지역</strong><br>서울 및 수도권 전체</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">MatchLove</div>
+                <p>매치러브 | 2030 직장인 프리미엄 매칭 서비스</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem;">본 서비스는 철저한 신원 인증을 기반으로 운영됩니다.</p>
+            </div>
+            <div style="text-align: right;">
+                <p>&copy; 2026 MatchLove. All Rights Reserved.</p>
+                <div style="margin-top: 1rem; display: flex; gap: 1rem; justify-content: flex-end;">
+                    <a href="#">이용약관</a>
+                    <a href="#">개인정보처리방침</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Reveal
+        const reveals = document.querySelectorAll('[data-reveal]');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => revealObserver.observe(el));
+
+        // Header Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-q').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
